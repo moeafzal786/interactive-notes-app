@@ -1,0 +1,172 @@
+/* Reset */
+body {
+    margin: 0;
+    font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+    background: linear-gradient(135deg, #3498db, #9b59b6); /* gradient background */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Center container for login */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* full viewport height */
+    background: linear-gradient(135deg, #3498db, #9b59b6); /* gradient background */
+}
+
+/* Auth card */
+.auth-card {
+    max-width: 400px;
+    width: 100%;
+    padding: 28px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+    .auth-card h2 {
+        margin-bottom: 20px;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+
+/* Links under form */
+.links {
+    margin-top: 16px;
+}
+
+    .links a {
+        margin: 0 8px;
+        color: #3498db;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s ease;
+    }
+
+        .links a:hover {
+            color: #2980b9;
+        }
+
+/* Existing styles for App, notes, buttons, inputs remain unchanged */
+.App {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.logout-btn {
+    background: #e67e22;
+    margin-bottom: 20px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+    .logout-btn:hover {
+        background: #d35400;
+        transform: translateY(-2px);
+    }
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.note-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .note-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    .note-card h3 {
+        margin: 0 0 10px;
+        color: #34495e;
+        font-weight: 600;
+    }
+
+    .note-card p {
+        margin: 0 0 14px;
+        line-height: 1.5;
+        color: #555;
+    }
+
+.tags {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 4px 10px;
+    margin: 2px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    margin: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+    button:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+    }
+
+    button[type="button"] {
+        background: #e74c3c;
+    }
+
+        button[type="button"]:hover {
+            background: #c0392b;
+        }
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    input:focus, textarea:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
+        outline: none;
+    }
+
+textarea {
+    min-height: 100px;
+}
