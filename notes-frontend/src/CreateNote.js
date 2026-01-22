@@ -26,23 +26,26 @@ export default function CreateNote({ onNoteCreated }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Title"
-            />
-            <textarea
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                placeholder="Content"
-            />
-            <input
-                value={tags}
-                onChange={(e) => setTags(e.target.value)}
-                placeholder="Tags (comma separated)"
-            />
-            <button type="submit">Add Note</button>
-        </form>
+        <div className="create-note-card">
+            <h2>Create a New Note</h2>
+            <form onSubmit={handleSubmit} className="create-note-form">
+                <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Title"
+                />
+                <textarea
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    placeholder="Content"
+                />
+                <input
+                    value={tags}
+                    onChange={(e) => setTags(e.target.value)}
+                    placeholder="Tags (comma separated)"
+                />
+                <button type="submit">Add Note</button>
+            </form>
+        </div>
     );
 }

@@ -1,8 +1,9 @@
 ﻿import React, { useEffect, useState } from "react";
 import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
 import { API_BASE } from "./api";
-import { Card, Title, Paragraph, Button } from "react-native-paper";
+import { Card, Title, Paragraph, Button, FAB, Chip } from "react-native-paper";
 
 export default function NotesList({ token, navigation, onLogout }) {
     const [notes, setNotes] = useState([]);
@@ -22,19 +23,20 @@ export default function NotesList({ token, navigation, onLogout }) {
     }, [token]);
 
     return (
-        <View style={{ flex: 1, marginTop: 20 }}>
-            <Button onPress={onLogout}>Logout</Button>
+        <LinearGradient colors={["#3498db", "#9b59b6"]} style={styles.container}>
             <Button
-                mode="contained"
-                onPress={() => navigation.navigate("CreateNote")}
-                style={{ marginVertical: 12 }}
+                mode="outlined"
+                onPress={onLogout}
+                style={styles.logout}
+                textColor="#e74c3c"
             >
-                Add New Note
+                Logout
             </Button>
+
             <FlatList
                 data={notes}
                 keyExtractor={(item) => item.id.toString()}
-                ListEmptyComponent={<Paragraph>No notes yet</Paragraph>}
+                ListEmptyComponent={<Paragraph style={{ color: "#fff" }}>No notes yet</Paragraph>}
                 renderItem={({ item }) => (
                     <TouchableOpacity
                         onPress={() => navigation.navigate("NoteDetail", { note: item })}
@@ -44,22 +46,62 @@ export default function NotesList({ token, navigation, onLogout }) {
                                 <Title style={styles.title}>{item.title}</Title>
                                 <Paragraph style={styles.text}>{item.content}</Paragraph>
                                 {item.tag_names && item.tag_names.length > 0 && (
-                                    <Paragraph style={styles.tags}>
-                                        Tags: {item.tag_names.join(", ")}
-                                    </Paragraph>
+                                    <View style={styles.tagsContainer}>
+                                        {item.tag_names.map((tag, idx) => (
+                                            <Chip key={idx} style={styles.chip}>{tag}</Chip>
+                                        ))}
+                                    </View>
                                 )}
                             </Card.Content>
                         </Card>
                     </TouchableOpacity>
                 )}
             />
-        </View>
+
+            <FAB
+                style={styles.fab}
+                icon="plus"
+                onPress={() => navigation.navigate("CreateNote")}
+            />
+        </LinearGradient>
     );
 }
 
 const styles = StyleSheet.create({
-    card: { marginBottom: 12, backgroundColor: "#f0f4f8", borderRadius: 12 },
-    title: { color: "#111827", fontWeight: "bold" },   // darker
-    text: { color: "#111827" },                        // darker
-    tags: { marginTop: 6, color: "#374151", fontStyle: "italic" }, // medium gray
+    container: { flex: 1, padding: 16 },
+    logout: {
+        marginBottom: 12,
+        borderColor: "#2c3e50", // darker border for contrast
+        borderWidth: 1.5,
+        elevation: 4,
+        shadowColor: "#000",
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        shadowOffset: { width: 0, height: 2 },
+    },
+    card: {
+        marginBottom: 16,
+        backgroundColor: "#fff",
+        borderRadius: 12,
+        elevation: 4,
+        shadowColor: "#000",
+        shadowOpacity: 0.1,
+        shadowRadius: 6,
+        shadowOffset: { width: 0, height: 3 },
+    },
+    title: { color: "#2c3e50", fontWeight: "bold", fontSize: 18 },
+    text: { color: "#555", marginTop: 4 },
+    tagsContainer: { flexDirection: "row", flexWrap: "wrap", marginTop: 8 },
+    chip: { marginRight: 6, marginBottom: 6, backgroundColor: "#3498db" },
+    fab: {
+        position: "absolute",
+        right: 16,
+        bottom: 16,
+        backgroundColor: "#3498db", // blue so it pops against purple
+        elevation: 6,
+        shadowColor: "#000",
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+        shadowOffset: { width: 0, height: 3 },
+    },
 });
